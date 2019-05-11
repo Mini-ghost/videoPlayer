@@ -1,7 +1,7 @@
 @charset "UTF-8";
 html, body, h1, h2, h3, h4, h5, h6, p, input, button, main {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   position: relative;
   font-size: 100%;
 }
@@ -33,7 +33,7 @@ main {
 
 @media (max-width: 677px) {
   main {
-    padding: 0;
+    padding: 2vw 0;
   }
 }
 
