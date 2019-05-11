@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+html(lang="zh-TW")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Video Player
+
+        link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.8.1/css/all.css", integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf", crossorigin="anonymous")
+        link(rel="stylesheet", href="css/style.css")
+    body
+        header
+        main
+            section
+                .container
+                    .player
+                        video#player
+                            source(src="upload/國立虎尾科技學生會_虎嘯聲新生特刊（NFUSA_Freshmen 2015）_HD.mp4" type="video/mp4")
+                        .player-controls
+                            .player-progress.jsProgress
+                                .player-progress__filled.jsProgressFilled
+                            .player-tools
+                                .player-tools__group
+                                    button.player__button.player--play.jsPlayToggle
+                                        i.fas.fa-play
+                                    label.player__slider.player__slider--volume
+                                        i.fas.fa-volume-up.jsMuteToggle
+                                        input.jsVolumeRange(type="range" min="0" max="1" step="0.05" value="1")
+                                    .player-time
+                                        span.playe-timer__now.jsTimeNow 00:00
+                                        span  / 
+                                        span.player-time__all.jsTimeAll 00:00
+                                .player-tools__group
+                                    button.player__button.player--screen.jsFullScreen
+                                        i.fas.fa-expand
+
+                    h1.player__title.player__title--white 國立虎尾科技學生會 虎嘯聲新生特刊（NFUSA Freshmen 2015）
+        footer
+
+    script(src="js/index.js")

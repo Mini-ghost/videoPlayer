@@ -1,0 +1,125 @@
+%init
+    margin: 0
+    padding: 0
+    position: relative
+    font-size: 100%
+
+// *
+//     outline: 1px solid #f00
+
+*, *:before, *:after
+    box-sizing: border-box
+
+html, body
+    @extend %init
+    font-family: 微軟正黑體
+
+h1, h2, h3, h4, h5, h6, p
+    @extend %init
+
+input, button
+    @extend %init
+    outline: none
+    
+
+button
+    border: none
+    background: none
+    color: inherit
+    
+
+main
+    @extend %init
+    background-color: #1f1f1f
+    padding: 2vw
+    min-height: 100vh
+
+#player
+    display: block
+    width: 100%
+    max-width: 1280px
+    margin: 0 auto
+    background-color: black
+
+.container
+    max-width: 1280px
+    width: 95%
+    margin: 0 auto
+
+.player
+    position: relative
+    margin: 2vw 0
+    overflow: hidden
+    &:hover
+        .player-controls
+            bottom: 0px
+            opacity: 1
+            transition-delay: 0s
+    &-controls
+        position: absolute
+        bottom: -50px
+        left: 0
+        width: 100%
+        height: 50px
+        background-image: linear-gradient(to bottom, transparent 0%, rgba(black,0.4) 100%)
+        color: white
+        padding: 0 20px
+        opacity: 0
+        transition: 0.5s 0.5s
+    &-progress
+        position: relative
+        width: 100%
+        height: 3.5px
+        background-color: rgba(white, 0.3)
+        cursor: pointer    
+        &__filled
+            position: absolute
+            top: 0
+            left: 0
+            width: 0%
+            height: 100%
+            background-color: #f00
+    &-tools
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin-top: 14px
+        &__group
+            display: flex
+            align-items: center
+            
+    &__button, &__slider
+        margin: 0 10px
+        cursor: pointer
+    &__button
+    &__slider
+        display: inline-flex
+        align-items: center
+        input[type="range"]
+            width: 120px
+            appearance: none
+            background-color: transparent
+            transition: 0.5s
+            margin: 0 8px
+            &::-webkit-slider-runnable-track
+                width: 100%
+                height: 3px
+                cursor: pointer
+                background-color: rgba(white,0.8)
+                border-radius: 5px
+            &:focus::-webkit-slider-runnable-track
+                background-color: #fff
+            &::-webkit-slider-thumb
+                width: 12px
+                height: 12px
+                border-radius: 50%
+                appearance: none
+                background-color: #fff
+                margin-top: -5px          
+    &__title
+        margin: 1rem 0
+        font-size: 1.25rem
+        &#{&}--white
+            color: white
+            
+
