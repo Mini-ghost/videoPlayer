@@ -7,6 +7,8 @@
 
     window.requestAnimationFrame = requestAnimationFrame;
     window.cancelAnimationFrame = cancelAnimationFrame;
+
+    window.isFullScreen = false;
 })();(function () {
 
     var u = navigator.userAgent;
@@ -28,6 +30,7 @@
 
     var player = document.querySelector('#player');
     var playToggle = document.querySelector('.jsPlayToggle');
+    var playIcon = playToggle.querySelector('i');
     var volumeMuteToggle = document.querySelector('.jsMuteToggle');
     var volumeRange = document.querySelector('.jsVolumeRange');
     //
@@ -83,13 +86,20 @@
         }
     };
 
-    function playPauseHandler() {
+    function playPauseHandler(e) {
+        var target = e.target;
+        if (isFullScreen && target === player) return;
         if (player.paused) {
-            request = requestAnimationFrame(uploadTimeHandler);
             player.play();
+            request = requestAnimationFrame(uploadTimeHandler);
+            playIcon.classList.remove('fa-play');
+            playIcon.classList.add('fa-pause');
+            //pause
         } else {
             player.pause();
             cancelAnimationFrame(request);
+            playIcon.classList.remove('fa-pause');
+            playIcon.classList.add('fa-play');
         }
     };
 
@@ -120,7 +130,7 @@
     };
 
     function fullScreenHandler() {
-        var requestFullscreen = player.requestFullscreen || player.mozRequestFullScreen || player.mozRequestFullScreen || player.msRequestFullscreen;
+        var requestFullscreen = player.requestFullscreen || player.webkitRequestFullScreen || player.mozRequestFullScreen || player.msRequestFullscreen;
         player.requestFullscreen = requestFullscreen;
         player.requestFullscreen();
     }
@@ -139,7 +149,16 @@
 
     player.addEventListener('click', playPauseHandler);
     player.addEventListener('volumechange', function () {
+        var volume = this.volume;
+        var icon = volumeMuteToggle.classList;
         volumeRange.value = this.volume;
+        if (volume > 0.6) {
+            icon.remove('fa-volume-off', 'fa-volume-down');icon.add('fa-volume-up');
+        } else if (volume <= 0.6 && volume > 0) {
+            icon.remove('fa-volume-off', 'fa-volume-up');icon.add('fa-volume-down');
+        } else {
+            icon.remove('fa-volume-down', 'fa-volume-up');icon.add('fa-volume-off');
+        }
     });
     player.addEventListener('timeupdate', function () {
         timeNow.innerText = uploadTimeNowHandler(player.currentTime);
@@ -149,7 +168,10 @@
         timeNow.innerText = uploadTimeNowHandler(player.currentTime);
     });
 
-    window.addEventListener('load', function () {
-        document.documentElement.classList.add(device);
+    document.addEventListener('fullscreenchange', function () {
+        if (isFullScreen) isFullScreen = false;else isFullScreen = true;
     });
+
+    // 初始化設定
+    document.documentElement.classList.add(device);
 })();
