@@ -142,7 +142,7 @@
         volumeRange.value = this.volume;
     });
     player.addEventListener('timeupdate', function () {
-        TimeNow.innerText = uploadTimeNowHandler(player.currentTime);
+        timeNow.innerText = uploadTimeNowHandler(player.currentTime);
     });
     player.addEventListener('loadeddata', function () {
         timeAll.innerText = uploadTimeAllHandler(player.duration);
