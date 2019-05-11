@@ -35,6 +35,7 @@
     var playIcon = playToggle.querySelector('i');
     var volumeMuteToggle = document.querySelector('.jsMuteToggle');
     var volumeRange = document.querySelector('.jsVolumeRange');
+    var speedBtn = document.querySelector('.jsSpeed')
     //
     var progress = document.querySelector('.jsProgress')
     var progressFilled = progress.querySelector('.jsProgressFilled')
@@ -44,7 +45,7 @@
     var playerTime = document.querySelector('.player-time');
     var timeNow = playerTime.querySelector('.jsTimeNow');
     var timeAll = playerTime.querySelector('.jsTimeAll');
-    var percentage = 0, request
+    var percentage = 0, speedArray = [1, 1.25, 1.5, 1.75, 2], speed = 1, request
 
 
     function uploadTimeNowHandler(currentTime) {
@@ -151,6 +152,29 @@
     volumeMuteToggle.addEventListener('click',volumeMuteHandler)
     volumeRange.addEventListener('change', volumeChangeHamdler)
     volumeRange.addEventListener('mousemove', volumeChangeHamdler)
+
+    speedBtn.addEventListener('click', function () {
+        var num
+        switch(speed){
+            case speedArray[0]:
+                num = speedArray[1]
+                break;
+            case speedArray[1]:
+                num = speedArray[2]
+                break;
+            case speedArray[2]:
+                num = speedArray[3]
+                break;
+            case speedArray[3]:
+                num = speedArray[4]
+                break;
+            case speedArray[4]:
+                num = speedArray[0]
+                break;    
+        }
+        this.innerText = `×${num}`
+        player.playbackRate = speed = num
+    })
 
     fullScreen.addEventListener('click', fullScreenHandler)
 
