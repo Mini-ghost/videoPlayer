@@ -31,6 +31,12 @@ main {
   min-height: 100vh;
 }
 
+@media (max-width: 677px) {
+  main {
+    padding: 0;
+  }
+}
+
 #player {
   display: block;
   width: 100%;
@@ -43,6 +49,12 @@ main {
   max-width: 1280px;
   width: 95%;
   margin: 0 auto;
+}
+
+@media (max-width: 677px) {
+  .container {
+    width: 100%;
+  }
 }
 
 .player {
@@ -129,6 +141,12 @@ main {
   align-items: center;
 }
 
+@media (max-width: 667px) {
+  .player-content {
+    padding: 0 3vw;
+  }
+}
+
 .player__button, .player__slider {
   margin: 0 10px;
   cursor: pointer;
@@ -198,4 +216,8 @@ main {
 
 .player__title.player__title--white {
   color: white;
+}
+
+.iOS .player-controls {
+  display: none;
 }

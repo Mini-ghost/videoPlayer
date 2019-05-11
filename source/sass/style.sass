@@ -33,6 +33,8 @@ main
     background-color: #1f1f1f
     padding: 2vw
     min-height: 100vh
+    @media (max-width: 677px)
+        padding: 0
 
 #player
     display: block
@@ -45,6 +47,8 @@ main
     max-width: 1280px
     width: 95%
     margin: 0 auto
+    @media (max-width: 677px)
+        width: 100%
 
 .player
     position: relative
@@ -92,6 +96,9 @@ main
         &__group
             display: flex
             align-items: center
+    &-content
+        @media (max-width: 667px)
+            padding: 0 3vw
     &__button, &__slider
         margin: 0 10px
         cursor: pointer
@@ -132,4 +139,7 @@ main
         &#{&}--white
             color: white
             
-
+.iOS
+    .player
+        &-controls
+            display: none
