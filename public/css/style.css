@@ -33,7 +33,7 @@ main {
 
 @media (max-width: 677px) {
   main {
-    padding: 2vw 0;
+    padding: 0;
   }
 }
 
@@ -61,6 +61,12 @@ main {
   position: relative;
   margin: 2vw 0;
   overflow: hidden;
+}
+
+@media (max-width: 677px) {
+  .player {
+    padding: 0;
+  }
 }
 
 .player:hover .player-controls {

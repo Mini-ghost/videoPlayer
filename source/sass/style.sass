@@ -4,9 +4,6 @@
     position: relative
     font-size: 100%
 
-// *
-//     outline: 1px solid #f00
-
 *, *:before, *:after
     box-sizing: border-box
 
@@ -21,20 +18,18 @@ input, button
     @extend %init
     outline: none
     
-
 button
     border: none
     background: none
     color: inherit
     
-
 main
     @extend %init
     background-color: #1f1f1f
     padding: 2vw
     min-height: 100vh
     @media (max-width: 677px)
-        padding: 2vw 0
+        padding: 0
 
 #player
     display: block
@@ -54,6 +49,8 @@ main
     position: relative
     margin: 2vw 0
     overflow: hidden
+    @media (max-width: 677px)
+        padding: 0
     &:hover
         .player-controls
             bottom: 0px
