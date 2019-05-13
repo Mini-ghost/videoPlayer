@@ -95,14 +95,11 @@
         if (player.paused) {
             player.play();
             request = requestAnimationFrame(uploadTimeHandler);
-            playIcon.classList.remove('fa-play');
-            playIcon.classList.add('fa-pause');
-            //pause
+            playIcon.className = 'fas fa-pause';
         } else {
             player.pause();
             cancelAnimationFrame(request);
-            playIcon.classList.remove('fa-pause');
-            playIcon.classList.add('fa-play');
+            playIcon.className = 'fas fa-play';
         }
     };
 
@@ -188,6 +185,9 @@
     });
     player.addEventListener('timeupdate', function () {
         timeNow.innerText = uploadTimeNowHandler(player.currentTime);
+        if (player.currentTime === player.duration) {
+            playIcon.className = 'fas fa-redo';
+        }
     });
     player.addEventListener('loadeddata', function () {
         timeAll.innerText = uploadTimeAllHandler(player.duration);

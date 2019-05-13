@@ -288,6 +288,13 @@ main {
   align-items: center;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.player__speed:hover {
+  background-color: #cc8400;
 }
 
 .player__title {
