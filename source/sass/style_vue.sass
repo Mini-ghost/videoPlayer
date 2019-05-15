@@ -1,0 +1,276 @@
+@mixin Scrollbar
+    overflow-x: hidden
+    overflow-y: auto
+    &::-webkit-scrollbar
+        background-color: transparent
+        width: 5px
+    &::-webkit-scrollbar-thumb
+        width: 5px
+        background-color: rgba(black,0.8)
+    &::-webkit-scrollbar-track
+        background-color: rgba(white,0.2)
+
+$playerHeight: 56.25%
+    
+%init
+    position: relative
+    margin: 0px
+    padding: 0px
+    border: 0
+    font-size: 100%
+    font: inherit
+
+*, *:before, *:after
+    box-sizing: border-box
+    color: inherit
+
+html, body
+    @extend %init
+
+html
+    font-family: 微軟正黑體
+
+h1, h2, h3, h4, h5, h6, p
+    @extend %init
+
+ul
+    @extend %init
+    list-style: none
+
+a 
+    text-decoration: none
+    color: inherit
+
+section, footer, main, nav
+    @extend %init
+    display: block
+
+video
+    @extend %init
+
+input, button
+    @extend %init
+    outline: none
+    
+button
+    border: none
+    background: none
+    color: inherit
+
+    
+main
+    background-color: #1f1f1f
+    padding: 2vw
+    min-height: 100vh
+    @media (max-width: 677px)
+        padding: 0
+
+
+.container
+    max-width: 95%
+    width: 100%
+    margin: 0 auto
+    &--flex
+        display: flex
+        align-items: stretch
+
+#player
+    position: relative
+    display: block
+    width: 100%
+    height: $playerHeight
+    margin: 0 auto
+    background-color: black
+
+.nav    
+    &-unit
+        flex-basis: 30%
+        flex-grow: 1
+        flex-shrink: 1
+        order: 1
+        height: 90vh
+        overflow-x: hidden
+        overflow-y: auto
+        +Scrollbar
+        &__ul
+            padding: 0 10px
+        &__li
+            &:not(:first-child)
+                margin-top: 20px
+        &__text
+            width: 100%
+            min-height: 40px
+            font-size: 14px
+            color: white
+            background-color: rgba(white,0.1)
+            padding: 10px
+        &__list
+            padding: 5px
+        &__item
+            color: white
+            font-size: 14px
+            overflow: hidden
+            text-overflow: ellipsis
+            white-space: nowrap
+            width: 100%
+            transition: 0.5s
+            &:hover
+                background-color: orange
+            a 
+                display: inline-block
+                padding: 15px 5px
+
+
+.player
+    order: 0
+    position: relative
+    width: 100%
+    max-width: 1280px
+    @media (max-width: 677px)
+        margin: 0px
+    &-main
+        display: flex
+        position: relative
+        overflow: hidden
+        &:hover
+            .player-controls
+                bottom: 0px
+                opacity: 1
+                transition-delay: 0s
+    &-controls
+        position: absolute
+        bottom: -50px
+        left: 0
+        width: 100%
+        height: 50px
+        background-image: linear-gradient(to bottom, transparent 0%, rgba(black,0.4) 100%)
+        color: white
+        padding: 0 1vw
+        opacity: 0
+        transition: 0.5s 0.5s
+        @media (max-width: 667px)
+            font-size: 12px
+            height: 40px
+    &-progress
+        position: relative
+        width: 100%
+        height: 3.5px
+        background-color: rgba(white, 0.3)
+        cursor: pointer    
+        &__filled
+            position: absolute
+            top: 0
+            left: 0
+            width: 0%
+            height: 100%
+            background-color: #f00
+    &-tools
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin-top: 14px
+        @media (max-width: 667px)
+            margin-top: 10px
+        &__group
+            display: flex
+            align-items: center
+    &-information
+        @media (max-width: 667px)
+            padding: 0 3vw
+
+    &__button, &__slider
+        margin: 0 10px
+        cursor: pointer
+    &__slider
+        &--volume
+            flex-basis: 85px
+            flex-grow: 1
+            flex-shrink: 1
+    &__volume
+        width: 18px
+        height: 18px
+        display: flex
+        justify-content: center
+        align-items: center
+    &__slider
+        display: inline-flex
+        align-items: center
+        input[type="range"]
+            width: 100%
+            appearance: none
+            background-color: transparent
+            transition: 0.5s
+            margin: 0 8px
+            // google 軌道顏色
+            &::-webkit-slider-runnable-track
+                width: 100%
+                height: 3px
+                cursor: pointer
+                background-color: rgba(white,0.8)
+                border-radius: 5px
+            // mozilla 軌道顏色
+            &::-moz-range-track
+                width: 100%
+                height: 3px
+                cursor: pointer
+                background-color: rgba(white,0.8)
+                border-radius: 5px
+            // 微軟軌道顏色
+            &::-ms-track
+                width: 100%
+                height: 3px
+                cursor: pointer
+                background-color: rgba(white,0.8)
+                border-color: transparent
+                color: transparent
+            &:focus::-webkit-slider-runnable-track
+                background-color: #fff
+            // google 滑塊
+            &::-webkit-slider-thumb
+                width: 12px
+                height: 12px
+                border-radius: 50%
+                appearance: none
+                background-color: #fff
+                margin-top: -5px
+                @media (max-width: 667px)
+                    width: 9px
+                    height: 9px       
+                    margin-top: -3px
+            // mozilla 滑塊
+            &::-moz-range-thumb
+                width: 12px
+                height: 12px
+                border-radius: 50%
+                appearance: none
+                background-color: #fff
+            // 微軟 滑塊
+            &::-ms-thumb
+                margin-top: -2px
+                width: 12px
+                height: 12px
+                border-radius: 50%
+                background-color: #fff
+    &__speed
+        width: 48px
+        height: 24px
+        font-size: 12px
+        display: flex
+        justify-content: center
+        align-items: center
+        border-radius: 5px
+        background-color: rgba(black,0.5)
+        transition: 0.5s
+        &:hover
+            background-color: darken(orange,10%)
+    &__title
+        margin: 1rem 0
+        font-size: 1.25rem
+        &#{&}--white
+            color: white
+
+// iOS 隱藏工具列
+.iOS
+    .player
+        &-controls
+            display: none
